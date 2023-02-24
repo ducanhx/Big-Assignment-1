@@ -1,0 +1,108 @@
+from student_managements import student_management, student
+qlsv = student_management()
+while (1==1):
+    print("***********************Student*************************")
+    print("**  1. Add Student.                                  **")
+    print("**  2. Update infomation by ID.                      **")
+    print("**  3. Delete student by ID.                         **")
+    print("**  4. Find student.                                 **")
+    print("**  5. List student.                                 **")
+    print("**  0. Back to menu.                                 **")
+    print("*******************************************************")
+    student_key = (input("Nhap tuy chon: "))
+    if (student_key == '1'):
+        print("\n1. Them sinh vien.")
+        qlsv.fill_student()
+        print("\nThem sinh vien thanh cong!")
+    elif (student_key == '2'):
+        print("\n2. Cap nhat thong tin sinh vien ")
+        print("\nNhap ID: ")
+        ID = (input())
+        if qlsv.findByID(ID) == None: 
+            print("Student does not exist.")
+        else:
+            searchResult = qlsv.findByID2(ID)
+            qlsv.show_student(searchResult)
+            print("*****************Update Information********************")
+            print("**  1. Update ID.                                    **")
+            print("**  2. Update Name.                                  **")
+            print("**  3. Update Birth.                                 **")
+            print("**  4. Update Sex.                                   **")
+            print("**  5. Update Address.                               **")
+            print("**  6. Update Number.                                **")
+            print("**  7. Update Email.                                 **")
+            print("**  0. Back to menu.                                 **")
+            print("*******************************************************")
+            update_key = (input("Nhap tuy chon: "))
+            if (update_key == '1'): 
+                qlsv.update_id_student(ID)
+                print("Success.")
+            elif (update_key == '2'):
+                qlsv.update_name_student(ID)
+                print("Success.")
+            elif (update_key == '3'):
+                qlsv.update_birth_student(ID)
+                print("Success.")
+            elif (update_key == '4'):
+                qlsv.update_sex_student(ID)
+                print("Success.")
+            elif (update_key == '5'):
+                qlsv.update_address_student(ID)
+                print("Success.")
+            elif (update_key == '6'):
+                qlsv.update_number_student(ID)
+                print("Success.")
+            elif (update_key == '7'):
+                qlsv.update_email_student(ID)
+                print("Success.")
+            elif (update_key == '0'):
+                break
+            else:
+                print("\nKhong co chuc nang nay!")
+                print("\nHay chon chuc nang trong hop.") 
+    elif (student_key == '3'):
+        print("\n3.Xoa sinh vien boi ID.")
+        print("\nNhap ID: ")
+        ID = (input())
+        qlsv.deleteById(ID)
+        print("Ban da xoa thanh cong.")
+    elif (student_key == '4'):
+        print("\n4. Tim kiem sinh vien.")
+        print("*****************Search option********************")
+        print("**  1. Search by name.                          **")
+        print("**  2. Search by id.                            **")
+        print("**  0. Back to menu.                            **")
+        search_key = (input("Nhap tuy chon: "))
+        if (search_key == '1'):
+            print("\nNhap ten de tim kiem: ")
+            name = input()
+            searchResult = qlsv.findByName(name)
+            qlsv.show_student(searchResult)
+        elif (search_key == '2'):
+            print("\nNhap ID: ")
+            ID = (input())
+            if qlsv.findByID(ID) == None: 
+                print("Student does not exist.")
+            else:
+                searchResult = qlsv.findByID2(ID)
+                qlsv.show_student(searchResult)
+        elif (update_key == '0'):
+            break
+        else:
+            print("\nKhong co chuc nang nay!")
+            print("\nHay chon chuc nang trong hop.")
+
+    elif (student_key == '5'):
+        if (qlsv.studentamount() > 0):
+            print("\n5. Hien thi danh sach sinh vien.")
+            qlsv.show_student(qlsv.getListStudent())
+        else:
+            print("\nDanh sach sinh vien trong!")
+        
+    elif (student_key == '0'):
+        print("\nBan da chon thoat chuong trinh!")
+        break
+    else:
+        print("\nKhong co chuc nang nay!")
+        print("\nHay chon chuc nang trong hop.")
+        

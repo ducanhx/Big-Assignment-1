@@ -1,0 +1,86 @@
+class subject:
+    def __init__(self, id, name):
+        self.id = id
+        self.name = name
+class subject_management:
+    list_subject = []
+    def fill_subject(self):
+        id = input("Nhap ma subject: ")
+        while True:
+            studentt = self.findByID(id)
+            if studentt is not None:
+                print("ID này đã tồn tại, vui lòng nhập lại:")
+                id = input()
+            else:
+                break
+        name = input("Nhap ten subject: ")
+    
+        sb = subject(id, name)
+        self.list_subject.append(sb)
+   
+   
+    # find subject by ID
+    def findByID(self, ID):
+        searchResult = None
+        for sb in self.list_subject:
+            if  sb.id == ID:
+                searchResult = sb
+                break
+        
+        return searchResult
+ 
+    # find subject by name
+    def findByName(self, keyword):
+        listSB = []
+        for sb in self.list_subject:
+                if (keyword.upper() in sb.name.upper()):
+                    listSB.append(sb)
+                else:
+                    print("Student does not exist.")
+        return listSB
+ 
+    
+    def show_subject(self, listSB):
+        print("{:<8} {:<18}".format("ID", "Name"))
+        for sb in listSB:
+            print("{:<8} {:<18}".format(sb.id , sb.name))
+            print("\n")
+    def getListSubject(self):
+        return self.list_subject
+    def subjectamount(self):
+        return self.list_subject.__len__()
+ 
+    # Delete subject
+    def delete_Sb_ById(self, ID):
+        isDeleted = False
+        # find student by id
+        sb = self.findByID(ID)
+        if (sb != None):
+            self.list_subject.remove(sb)
+            isDeleted = True
+        return isDeleted
+    
+    def update_name_subject(self, ID):
+        sb = self.findByID(ID)
+        if sb != None:
+            name = input("Nhap ten subject moi: ")
+            sb.name = name
+        else:
+            print("Subject with ID {} does not exist.".format(ID))
+        
+    def update_id_subject(self, ID):
+        sb = self.findByID(ID)
+        if sb != None:
+            id = input("Nhap id moi: ")
+            sb.id = id
+        else:
+            print("Subject with ID {} does not exist.".format(ID))
+        
+    def findByID2(self, ID):
+        listSB = []
+        for sb in self.list_subject:
+                if sb.id == ID:
+                    listSB.append(sb)
+                else:
+                    print("Subject does not exist.")
+        return listSB

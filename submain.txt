@@ -1,0 +1,89 @@
+from subject_managements import subject,subject_management
+qlsb = subject_management()
+while (1==1):
+    print("***********************Subject*************************")
+    print("**  1. Add subject.                                  **")
+    print("**  2. Update infomation by ID.                      **")
+    print("**  3. Delete subject by ID.                         **")
+    print("**  4. Find subject.                                 **")
+    print("**  5. List subject.                                 **")
+    print("**  0. Back to menu.                                 **")
+    print("*******************************************************")
+     
+    subject_key = (input("Nhap tuy chon: "))
+    if (subject_key == '1'):
+        print("\n1. Add subject.")
+        qlsb.fill_subject()
+        print("\nSuccess.")
+    elif (subject_key == '2'):
+        print("\n2. Update infomation by ID. ")
+        print("\nNhap ID: ")
+        ID = (input())
+        if qlsb.findByID(ID) == None: 
+            print("Subject does not exist.")
+        else:
+            searchResult = qlsb.findByID2(ID)
+            qlsb.show_subject(searchResult)
+            print("*****************Update Information********************")
+            print("**  1. Update ID.                                    **")
+            print("**  2. Update Name.                                  **")
+            print("**  0. Back to menu.                                 **")
+            print("*******************************************************")
+            update_key = (input("Nhap tuy chon: "))
+            if (update_key == '1'): 
+                qlsb.update_id_subject(ID)
+                print("Success.")
+            elif (update_key == '2'):
+                qlsb.update_name_subject(ID)
+                print("Success.")
+            elif (update_key == '0'):
+                break   
+            else:
+                print("\nKhong co chuc nang nay!")
+                print("\nHay chon chuc nang trong hop.") 
+    elif (subject_key == '3'):
+        print("\n3. Delete subject by ID. ")
+        print("\nNhap ID: ")
+        ID = (input())
+        qlsb.delete_Sb_ById(ID)
+        print("Ban da xoa thanh cong.")
+    elif (subject_key == '4'):
+        print("\n4. Find subject.")
+        print("*****************Search option********************")
+        print("**  1. Search by name                           **")
+        print("**  2. Search by id.                            **")
+        print("**  0. Back to menu.                            **")
+        search_key = (input("Nhap tuy chon: "))
+        if (search_key == '1'):
+            print("\nNhap ten de tim kiem: ")
+            name = input()
+            searchResult = qlsb.findByName(name)
+            qlsb.show_subject(searchResult)
+        elif (search_key == '2'):
+            print("\nNhap ID: ")
+            ID = (input())
+            if qlsb.findByID(ID) == None: 
+                print("Student does not exist.")
+            else:
+                searchResult = qlsb.findByID2(ID)
+                qlsb.show_subject(searchResult)
+        elif (search_key == '0'):
+            break
+        else:
+            print("\nKhong co0 chuc nang nay!")
+            print("\nHay chon chuc nang trong hop.")
+        
+    elif (subject_key == '5'):
+        if (qlsb.subjectamount() > 0):
+            print("\n5. Hien thi danh sach sinh vien.")
+            qlsb.show_subject(qlsb.getListSubject())
+        else:
+            print("\nDanh sach sinh vien trong!")
+        
+    elif (subject_key == '0'):
+        print("\nBan da chon thoat chuong trinh!")
+        break
+    else:
+        print("\nKhong co chuc nang nay!")
+        print("\nHay chon chuc nang trong hop.")
+        

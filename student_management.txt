@@ -1,0 +1,139 @@
+
+
+class student:
+    def __init__(self, id, name, birth, sex, address, number, email):
+        self.id = id
+        self.name = name
+        self.birth = birth
+        self.sex = sex
+        self.address = address
+        self.number = number
+        self.email = email
+        
+class student_management:
+    list_student = []
+    def fill_student(self):
+        # Create student's information
+        id = input("Nhap ma sinh vien: ")
+        while True:
+            studentt = self.findByID(id)
+            if studentt is not None:
+                print("ID này đã tồn tại, vui lòng nhập lại:")
+                id = input()
+            else:
+                break
+        name = input("Nhap ten sinh vien: ")
+        birth = input("Nhap ngay sinh: ")
+        sex = input("Nhap gioi tinh sinh vien: ")
+        address = input("Nhap dia chi sinh vien: ")
+        number = input("Nhap so dien thoai: ")
+        email = input("Nhap email: ")
+        sv = student(id, name, birth, sex, address, number, email)
+        self.list_student.append(sv)
+
+    def update_id_student(self, ID):
+        # Find student in list_student
+        sv = self.findByID(ID)
+        # If exist then update
+        if sv != None:
+            id = input("Nhap ma sinh vien moi: ")
+            sv.id = id
+        else:
+            print("Student with ID {} does not exist.".format(ID))
+    def update_name_student(self, ID):
+        sv = self.findByID(ID)
+        if sv != None:
+            name = input("Nhap ten sinh vien moi: ")
+            sv.name = name
+        else:
+            print("Student with ID {} does not exist.".format(ID))
+        
+    def update_birth_student(self, ID):
+        sv = self.findByID(ID)
+        if sv != None:
+            birth = input("Nhap ngay sinh moi: ")
+            sv.birth = birth
+        else:
+            print("Student with ID {} does not exist.".format(ID))
+        
+    def update_sex_student(self, ID):
+        sv = self.findByID(ID)
+        if sv != None:
+            sex = input("Nhap gioi tinh moi: ")
+            sv.sex = sex
+        else:
+            print("Student with ID {} does not exist.".format(ID))
+        
+    def update_address_student(self, ID):
+        sv = self.findByID(ID)
+        if sv != None:
+            address = input("Nhap dia chi moi: ")
+            sv.address = address
+        else:
+            print("Student with ID {} does not exist.".format(ID))
+        
+    def update_number_student(self, ID):
+        sv = self.findByID(ID)
+        if sv != None:
+            number = input("Nhap so dien thoai moi: ")
+            sv.number = number
+        else:
+            print("Student with ID {} does not exist.".format(ID))
+        
+    def update_email_student(self, ID):
+        sv = self.findByID(ID)
+        if sv != None:
+            email = input("Nhap dia chi email moi: ")
+            sv.email = email
+        else:
+            print("Student with ID {} does not exist.".format(ID))
+        
+
+    # find student by ID
+    def findByID(self, ID):
+        searchResult = None
+        for sv in self.list_student:
+            if  sv.id == ID:
+                searchResult = sv
+                break
+        
+        return searchResult
+    
+    def findByID2(self, ID):
+        listSV = []
+        for sv in self.list_student:
+                if sv.id == ID:
+                    listSV.append(sv)
+                else:
+                    print("Student does not exist.")
+        return listSV
+ 
+    # find student by name
+    def findByName(self, keyword):
+        listSV = []
+        for sv in self.list_student:
+                if (keyword.upper() in sv.name.upper()):
+                    listSV.append(sv)
+                else:
+                    print("Student does not exist.")
+        return listSV
+ 
+    # Delete student
+    def deleteById(self, ID):
+        isDeleted = False
+        # find student by id
+        sv = self.findByID(ID)
+        if (sv != None):
+            self.list_student.remove(sv)
+            isDeleted = True
+        return isDeleted
+    def show_student(self, listSV):
+        print("{:<8} {:<18} {:<8} {:<8}{:<8} {:<8} {:<18}".format("ID", "Name", "Birth", "Sex", "Address", "Number", "Email"))
+        for sv in listSV:
+            print("{:<8} {:<18} {:<8} {:<8}{:<8} {:<8} {:<18}".format(sv.id , sv.name, sv.birth, sv.sex, sv.address, sv.number, sv.email))
+            print("\n")
+    def getListStudent(self):
+        return self.list_student
+    def studentamount(self):
+        return self.list_student.__len__()
+    

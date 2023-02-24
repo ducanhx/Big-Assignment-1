@@ -1,0 +1,22 @@
+while (1==1):
+    print("\nSystem")
+    print("*************************MENU**************************")
+    print("**  1. Student.                                      **")
+    print("**  2. Subject.                                      **")
+    print("**  3. Score.                                        **")           
+    print("**  0. Exit....                                      **")
+    print("*******************************************************")
+    key = (input("Nhap tuy chon: "))
+    if (key == '1'):
+        import student_main
+    elif (key == '2'):
+        import subject_main
+    #elif (key == '3'):
+       # print("\n3.Xoa sinh vien boi ID.")
+        #import score_main
+    elif (key == '0'):
+        print("\nBan da chon thoat chuong trinh!")
+        break
+    else:
+        print("\nKhong co chuc nang nay!")
+        print("\nHay chon chuc nang trong hop menu.")
